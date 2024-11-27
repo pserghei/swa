@@ -5,13 +5,41 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>SWA</title>
+	<style>
+		main {
+			max-width: 80ch;
+			margin: auto;
+		}
+
+		form {
+			max-width: 40ch;
+			display: grid;
+			gap: 0.5rem;
+		}
+
+		ul {
+			list-style: none;
+		}
+	</style>
 </head>
 
 <body>
 	<main>
-		<h1>Docker und Kubernetes</h1>
-		<a href="/docker.html">Docker</a>
-		<a href="/kubernetes.html">Kubernetes</a>
+		<h1>Chat</h1>
+		<form method="POST">
+			<input type="text" name="author" placeholder="Author" required>
+			<textarea name="message" placeholder="Say something..." required></textarea>
+			<button type="submit">Send!</button>
+		</form>
+
+		<ul>
+			{{ range $comment := . }}
+			<li>
+				<strong>{{ $comment.Author }}:</strong>
+				<span>{{ $comment.Message }}</span>
+			</li>
+			{{ end }}
+		</ul>
 	</main>
 </body>
 
